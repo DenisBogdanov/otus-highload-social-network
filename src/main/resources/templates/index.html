@@ -1,0 +1,33 @@
+<!doctype html>
+
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      lang="eng">
+
+<head>
+    <title>Otus Highload Social Network</title>
+</head>
+<body>
+
+<div style="margin-left: 20px">
+    <ul>
+        <li sec:authorize="isAuthenticated()">
+            <a th:href="@{/users}">Users</a>
+        </li>
+        <li sec:authorize="isAuthenticated()">
+            <a th:href="@{/personal-page}">Personal Page</a>
+        </li>
+        <li sec:authorize="isAuthenticated()">
+            <a th:href="@{/logout}">Logout</a>
+        </li>
+        <li sec:authorize="!isAuthenticated()">
+            <a th:href="@{/login}">Login</a>
+        </li>
+        <li sec:authorize="!isAuthenticated()">
+            <a th:href="@{/register}">Register</a>
+        </li>
+    </ul>
+</div>
+
+</body>
+</html>

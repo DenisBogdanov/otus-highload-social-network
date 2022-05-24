@@ -1,0 +1,83 @@
+<!doctype html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Registration Form</title>
+</head>
+<body>
+
+<h1>Registration</h1>
+
+<form th:object="${requestUser}" th:action="@{/register}" method="post">
+    <div>
+        <label for="email">Email:</label>
+        <div>
+            <input type="text" required id="email" th:field="*{email}"/>
+        </div>
+    </div>
+    <div>
+        <label for="password">Password:</label>
+        <div>
+            <input type="password" required id="password" th:field="*{password}" name="password">
+        </div>
+    </div>
+    <div>
+        <label for="first-name">First name:</label>
+        <div>
+            <input type="text" required id="first-name" th:field="*{firstName}"/>
+        </div>
+    </div>
+    <div>
+        <label for="last-name">Last name:</label>
+        <div>
+            <input type="text" required id="last-name" th:field="*{lastName}"/>
+        </div>
+    </div>
+    <div>
+        <label for="gender">Gender:</label>
+        <div>
+            <select id="gender" th:field="*{gender}">
+                <option th:each="g : ${T(com.bogdanium.social.network.db.entities.enums.Gender).values()}"
+                        th:value="${g}" th:text="${g}"></option>
+            </select>
+        </div>
+    </div>
+    <div>
+        <label for="city">City:</label>
+        <div>
+            <input type="text" required id="city" th:field="*{city}" name="city">
+        </div>
+    </div>
+    <div>
+        <label for="age">Age:</label>
+        <div>
+            <input type="number" required id="age" th:field="*{age}" name="age">
+        </div>
+    </div>
+    <div>
+        <label for="interests">Interests:</label>
+        <div>
+            <input type="text" id="interests" th:field="*{interests}" name="interests">
+        </div>
+    </div>
+    <div>
+        <div>
+            <button type="submit">Register</button>
+        </div>
+    </div>
+</form>
+
+<div style="margin-left: 20px">
+    <ul>
+        <li>
+            <a th:href="@{/}">Home</a>
+        </li>
+        <li>
+            <a th:href="@{/login}">Login</a>
+        </li>
+    </ul>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!doctype html>
+
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      lang="eng">
+
+<head>
+    <title>Users</title>
+</head>
+<body>
+
+<h1>Users</h1>
+
+<table class="table" style="margin-left: 20px">
+    <tbody>
+    <tr th:each="user : ${users}">
+        <td>
+            <a th:href="@{/users/{userId}(userId=${user.id})}">
+                [[${user.firstName}]] [[${user.lastName}]]
+            </a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<div style="margin-left: 20px; margin-top: 80px">
+    <ul>
+        <li>
+            <a th:href="@{/}">Home</a>
+        </li>
+        <li>
+            <a th:href="@{/users}">Users</a>
+        </li>
+        <li sec:authorize="isAuthenticated()">
+            <a th:href="@{/logout}">Logout</a>
+        </li>
+    </ul>
+</div>
+
+</body>
+</html>
