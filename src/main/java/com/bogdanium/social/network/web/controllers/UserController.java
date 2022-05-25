@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.stream.Collectors;
+
 @Controller
 @RequiredArgsConstructor
 public class UserController {
@@ -31,7 +33,7 @@ public class UserController {
         ResponseProfile currentUser = userInfoService.currentProfile();
         model.addAttribute("users", userInfoService.findAllUsers().stream()
                 .filter(user -> !user.getId().equals(currentUser.getId()))
-                .toList());
+                .collect(Collectors.toList()));
 
         return "users";
     }

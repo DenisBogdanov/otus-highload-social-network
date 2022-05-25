@@ -9,6 +9,7 @@ import com.bogdanium.social.network.web.model.response.ResponseUser;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class UserMapper {
@@ -51,7 +52,9 @@ public class UserMapper {
                 .city(user.getCity())
                 .interests(user.getInterests())
                 .age(user.getAge())
-                .friends(friends.stream().map(this::toResponseUser).toList())
+                .friends(friends.stream()
+                        .map(this::toResponseUser)
+                        .collect(Collectors.toList()))
                 .build();
     }
 }

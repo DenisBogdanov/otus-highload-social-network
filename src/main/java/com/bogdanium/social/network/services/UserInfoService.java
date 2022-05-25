@@ -15,6 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -51,7 +52,7 @@ public class UserInfoService {
     public List<ResponseUser> findAllUsers() {
         return userDao.findAll().stream()
                 .map(userMapper::toResponseUser)
-                .toList();
+                .collect(Collectors.toList());
     }
 
     public ResponseProfile userProfile(int userId) {
