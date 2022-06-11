@@ -72,6 +72,14 @@ public class UserInfoService {
         userMapper.toResponseUser(userEntity);
     }
 
+    public void saveAll(List<RequestUser> requestUsers) {
+        List<UserEntity> users = requestUsers.stream()
+                .map(userMapper::toUserEntity)
+                .toList();
+
+        userDao.saveAll(users);
+    }
+
     public void subscribe(int id) {
         ResponseProfile currentUser = currentProfile();
         userDao.subscribe(currentUser.getId(), id);

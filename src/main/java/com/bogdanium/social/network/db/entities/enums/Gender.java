@@ -12,6 +12,7 @@ public enum Gender {
         if (value.equalsIgnoreCase(MALE.name())) return MALE;
         if (value.equalsIgnoreCase(FEMALE.name())) return FEMALE;
         if (value.equalsIgnoreCase(OTHER.name())) return OTHER;
+        if (value.equalsIgnoreCase(NOT_SPECIFIED.name())) return NOT_SPECIFIED;
 
         throw new IllegalArgumentException("Invalid gender " + value);
     }

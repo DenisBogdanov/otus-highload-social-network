@@ -3,10 +3,13 @@ package com.bogdanium.social.network.db.dao;
 import com.bogdanium.social.network.db.entities.UserEntity;
 import com.bogdanium.social.network.db.entities.enums.Gender;
 import lombok.RequiredArgsConstructor;
+import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
@@ -28,6 +31,26 @@ public class UserDao {
                 user.getAge(), user.getInterests(), user.getCity());
 
         return findByEmail(user.getEmail());
+    }
+
+    public void saveAll(List<UserEntity> users) {
+        jdbcTemplate.getJdbcTemplate().batchUpdate("insert into users (email, first_name, last_name, password)" +
+                " values(?,?,?,?)", new BatchPreparedStatementSetter() {
+
+            @Override
+            public void setValues(PreparedStatement ps, int i) throws SQLException {
+                UserEntity user = users.get(i);
+                ps.setString(1, user.getEmail());
+                ps.setString(2, user.getFirstName());
+                ps.setString(3, user.getLastName());
+                ps.setString(4, "abc");
+            }
+
+            @Override
+            public int getBatchSize() {
+                return users.size();
+            }
+        });
     }
 
     public String findPasswordByEmail(String email) {

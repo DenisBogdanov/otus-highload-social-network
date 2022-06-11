@@ -9,7 +9,6 @@ import javax.validation.constraints.NotBlank;
 @Getter
 @Setter
 public class RequestUser {
-    private Integer id;
 
     @NotBlank
     @Email

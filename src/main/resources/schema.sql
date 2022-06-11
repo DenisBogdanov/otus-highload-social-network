@@ -5,7 +5,7 @@ create table if not exists users
     first_name varchar(50),
     last_name  varchar(50),
     age        int unsigned,
-    gender     varchar(6),
+    gender     varchar(13),
     city       varchar(50),
     interests  varchar(200),
     password   varchar(100)    not null
