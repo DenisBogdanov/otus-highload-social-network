@@ -84,6 +84,11 @@ public class UserDao {
                 "insert into users_friends (user_id, friend_id) values(?,?)", subscriberId, subscriptionId);
     }
 
+    public List<UserEntity> findByPrefix(String prefix) {
+        return jdbcTemplate.query("select * from users where first_name like :prefix and last_name like :prefix",
+                Map.of("prefix", prefix + "%"), USER_ENTITY_ROW_MAPPER);
+    }
+
     private final static RowMapper<UserEntity> USER_ENTITY_ROW_MAPPER = (rs, rowNum) -> UserEntity.builder()
             .id(rs.getInt("id"))
             .email(rs.getString("email"))

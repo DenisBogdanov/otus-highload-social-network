@@ -84,4 +84,10 @@ public class UserInfoService {
         ResponseProfile currentUser = currentProfile();
         userDao.subscribe(currentUser.getId(), id);
     }
+
+    public List<ResponseUser> findByPrefix(String prefix) {
+        return userDao.findByPrefix(prefix).stream()
+                .map(userMapper::toResponseUser)
+                .collect(Collectors.toList());
+    }
 }

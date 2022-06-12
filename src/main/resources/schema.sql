@@ -11,6 +11,8 @@ create table if not exists users
     password   varchar(100)    not null
 );
 
+# create index first_name_last_name_idx on users(first_name, last_name);
+
 create table if not exists users_friends
 (
     user_id   bigint unsigned not null,
