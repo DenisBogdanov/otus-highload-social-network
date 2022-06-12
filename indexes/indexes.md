@@ -33,4 +33,4 @@ create index first_name_last_name_idx on users (first_name, last_name);
 * В результате добавления индекса удалось добиться значительного прогресса как в latency, так и в throughput
 
 ![Alt text](img/latency-with-index.png "Latency with index")
-![Alt text](img/throughput-with-index.png "Throughput with index")
+![Alt text](img/throughput-with-index.PNG "Throughput with index")
