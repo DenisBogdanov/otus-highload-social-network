@@ -17,6 +17,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class UserDao {
     private final NamedParameterJdbcTemplate jdbcTemplate;
+    private final NamedParameterJdbcTemplate slaveJdbcTemplate;
 
     public List<UserEntity> findAll() {
         return jdbcTemplate.query("select * from users",
@@ -85,7 +86,7 @@ public class UserDao {
     }
 
     public List<UserEntity> findByPrefix(String prefix) {
-        return jdbcTemplate.query("select * from users where first_name like :prefix and last_name like :prefix",
+        return slaveJdbcTemplate.query("select * from users where first_name like :prefix and last_name like :prefix",
                 Map.of("prefix", prefix + "%"), USER_ENTITY_ROW_MAPPER);
     }
 
