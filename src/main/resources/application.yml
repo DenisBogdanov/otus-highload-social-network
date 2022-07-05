@@ -3,7 +3,11 @@ server:
 
 spring:
   datasource:
-    url: ${DATASOURCE_URL:jdbc:mysql://localhost:3306/social_network}
+    jdbc-url: ${DATASOURCE_URL:jdbc:mysql://localhost:3306/social_network}
+    username: ${DATASOURCE_USERNAME:root}
+    password: ${DATASOURCE_PASSWORD:root}
+  slave-datasource:
+    jdbc-url: ${DATASOURCE_URL:jdbc:mysql://localhost:3306/social_network}
     username: ${DATASOURCE_USERNAME:root}
     password: ${DATASOURCE_PASSWORD:root}
   sql:
